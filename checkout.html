@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - SkylerNodes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-left">
+      <img src="logo.png" class="logo" alt="SkylerNodes Logo">
+      <h2>SkylerNodes</h2>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#plans">Plans</a>
+      <a href="https://discord.gg/YOURDISCORD" target="_blank" class="discord-btn">Discord</a>
+    </nav>
+  </header>
+
+  <!-- CHECKOUT -->
+  <section class="checkout-section">
+    <h2 class="section-title">Checkout</h2>
+
+    <div class="checkout-container">
+
+      <!-- ORDER SUMMARY -->
+      <div class="checkout-box">
+        <h3>Order Summary</h3>
+        <p><b>Plan:</b> <span id="planName"></span></p>
+        <p><b>RAM:</b> <span id="planRam"></span></p>
+        <p><b>Storage:</b> <span id="planStorage"></span></p>
+        <p><b>Price:</b> ₹<span id="planPrice"></span></p>
+
+        <hr>
+
+        <p class="total"><b>Total:</b> ₹<span id="planPrice2"></span></p>
+
+        <a href="https://discord.gg/YOURDISCORD" target="_blank" class="btn-secondary full-btn">
+          Join Discord After Payment
+        </a>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="checkout-box">
+        <h3>Select Payment Method</h3>
+
+        <div class="payment-buttons">
+          <button onclick="showQR('phonepe')" class="pay-btn">PhonePe</button>
+          <button onclick="showQR('paytm')" class="pay-btn">Paytm</button>
+        </div>
+
+        <div class="qr-box">
+          <h4 id="payTitle">Scan & Pay</h4>
+          <img src="phonepe_qr.jpg" id="qrImage" alt="QR Code">
+          <p class="small-text">After payment, take screenshot and send in Discord ticket.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 SkylerNodes Hosting. Secure Payments via UPI.</p>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById("planName").innerText = params.get("name") || "Unknown";
+    document.getElementById("planRam").innerText = params.get("ram") || "N/A";
+    document.getElementById("planStorage").innerText = params.get("storage") || "N/A";
+    document.getElementById("planPrice").innerText = params.get("price") || "0";
+    document.getElementById("planPrice2").innerText = params.get("price") || "0";
+
+    function showQR(method) {
+      const qrImage = document.getElementById("qrImage");
+      const payTitle = document.getElementById("payTitle");
+
+      if (method === "phonepe") {
+        qrImage.src = "phonepe_qr.jpg";
+        payTitle.innerText = "Scan & Pay with PhonePe";
+      } else {
+        qrImage.src = "phonepe_qr.jpg"; 
+        payTitle.innerText = "Scan & Pay with Paytm";
+      }
+    }
+  </script>
+
+</body>
+</html>
